@@ -51,6 +51,7 @@ export const CharacterCard: React.FunctionComponent<Props> = (props) => {
               <li><strong>Name:</strong> {character.name}</li>
               <li><strong>Specie:</strong> {character.species}</li>
               <li><strong>Gender:</strong> {character.gender}</li>
+              <li><strong>Best Sentences:</strong> {character.bestSentences}</li>
             </ul>
           </Typography>
         </div>

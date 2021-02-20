@@ -17,5 +17,5 @@ export interface Character {
   status: string;
   type: string;
   url: string;
-
+  bestSentences: string;
 }

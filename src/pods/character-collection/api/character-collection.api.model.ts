@@ -1,5 +1,6 @@
 export interface CharacterEntityApi {
   created: string;
+  bestSentences: string;
   episode: Array<string>;
   gender: string;
   id: string;
