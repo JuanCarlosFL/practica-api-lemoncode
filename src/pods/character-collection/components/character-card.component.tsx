@@ -7,7 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar/Avatar';
 import IconButton from '@material-ui/core/IconButton/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
+import FaceIcon from '@material-ui/icons/Face';
 import { CharacterCollectionVM } from '../character-collection.vm';
 import * as classes from './character.card.styles';
 
@@ -16,13 +16,25 @@ interface Props {
   onShowCharacter: (id: string) => void;
 }
 
+const checkStatus = (status: string) => {
+  switch (status) {
+    case "Alive":
+      return "🙂"
+    case "Dead":
+      return "👿"
+    default:
+      return "😫"
+  }
+
+}
+
 export const CharacterCard: React.FunctionComponent<Props> = (props) => {
   const { character, onShowCharacter } = props;
 
   return (
     <Card>
       <CardHeader
-        avatar={<Avatar aria-label="Hotel" src={character.image} />}
+        avatar={<Avatar aria-label="Hotel" style={{backgroundColor: "white"}} >{checkStatus(character.status)}</Avatar>}
         title={character.id}
         subheader={character.status}
       />
@@ -36,7 +48,7 @@ export const CharacterCard: React.FunctionComponent<Props> = (props) => {
           <Typography variant="subtitle1" gutterBottom>
 
             <ul className={classes.list}>
-              <li><strong>Name:</strong> </li>
+              <li><strong>Name:</strong> {character.name}</li>
               <li><strong>Specie:</strong> {character.species}</li>
               <li><strong>Gender:</strong> {character.gender}</li>
             </ul>
@@ -45,7 +57,8 @@ export const CharacterCard: React.FunctionComponent<Props> = (props) => {
       </CardContent>
       <CardActions>
         <IconButton onClick={() => onShowCharacter(character.id)}>
-          <EditIcon />
+          <FaceIcon />
+          <strong style={{fontSize:"12px"}}>Show details</strong>
         </IconButton>
       </CardActions>
     </Card>
