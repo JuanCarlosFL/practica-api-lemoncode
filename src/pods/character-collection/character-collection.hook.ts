@@ -8,7 +8,10 @@ export const useCharacterCollection = () => {
   const [characterCollection, setCharacterCollection] = React.useState<CharacterCollectionVM[]>([]);
 
   const loadCharacterCollection = () => {
-    getCharacterCollection().then((result) => setCharacterCollection(mapToCollection(result, mapFromApiToVm)));
+    getCharacterCollection()
+      .then((result) => setCharacterCollection(mapToCollection(result, mapFromApiToVm)))
+      .catch(error => alert(error));
+
   }
 
   return { characterCollection, loadCharacterCollection }
