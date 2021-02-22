@@ -1,13 +1,7 @@
 import { Character } from './character.api-model';
+import Axios from 'axios';
 
 const url = 'https://rickandmortyapi.com/api/character';
 
-export const getCharacter = async (id: string): Promise<Character> => {
-  const response = await fetch (`${url}/${id}`);
-  if (response.ok){
-    const data = await response.json();
-    return data;
-  } else {
-    throw Error(response.statusText);
-  }
-}
+export const getCharacter = async (id: string): Promise<Character> =>
+  await Axios.get(`${url}/${id}`).then(response => response.data)
